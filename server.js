@@ -1,6 +1,9 @@
 // Setup empty JS object to act as endpoint for all routes
+const express = require('express')
+const app = express();
+const bodyParser = require('body-parser');
 projectData = {};
-
+const PORT = 7070;
 // Require Express to run server and routes
 
 // Start up an instance of app
@@ -17,3 +20,6 @@ app.use(express.static('website'));
 
 
 // Setup Server
+app.listen(PORT, () => {
+    console.log("Running Website...")
+});
