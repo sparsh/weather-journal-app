@@ -11,14 +11,21 @@ const getWeatherData = async (zipCode) => {
   const url = `${OPEN_WEATHER_BASE_URL}?zip=${zipCode}&appid=${API_KEY}`;
   const response = await fetch(url, {
     method: "GET",
+    headers: {
+        'Content-Type': 'application/json',
+      },
   });
   return response.json();
 };
 
 const postWeatherData = async (postData) => {
   const url = `/weather`;
+  console.log("the postData is ", postData)
   const response = await fetch(url, {
     method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+      },
     body: JSON.stringify(postData),
   });
   return response.json();
@@ -52,7 +59,7 @@ const generateWeatherReport = () => {
 
         postWeatherData(postData).then(response => {
             console.log("the response is ", response);
-        })
+        });
         updateUI(postData);
       });
     }

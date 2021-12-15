@@ -2,16 +2,18 @@
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require("cors");
 projectData = {};
-const PORT = 7070;
+const PORT = 8000;
 // Require Express to run server and routes
 
 // Start up an instance of app
-
+app.use(cors());
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 // Cors for cross origin allowance
 
@@ -27,7 +29,7 @@ const postWeather = (request, response) => {
     projectData = {
         ...requestBody
     };
-    console.log("the project data is ", projectData)
+    console.log("the project data is ", projectData, request.body)
     response.send({status:'Success', message:'Data Added Sucessfully'});
 }
 app.get('/weather', getWeather);
