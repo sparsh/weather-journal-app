@@ -1,7 +1,7 @@
 // Setup empty JS object to act as endpoint for all routes
-const express = require('express')
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const cors = require("cors");
 projectData = {};
 const PORT = 8000;
@@ -14,29 +14,25 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // Cors for cross origin allowance
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static("website"));
 const getWeather = (request, response) => {
-    console.log("Sending project data", projectData);
-    response.send(projectData);
-}
+  response.send(projectData);
+};
 
 const postWeather = (request, response) => {
-    const requestBody = request.body;
-    projectData = {
-        ...requestBody
-    };
-    console.log("the project data is ", projectData, request.body)
-    response.send({status:'Success', message:'Data Added Sucessfully'});
-}
-app.get('/weather', getWeather);
+  const requestBody = request.body;
+  projectData = {
+    ...requestBody,
+  };
 
-app.post('/weather', postWeather);
+  response.send({ status: "Success", message: "Data Added Sucessfully" });
+};
+app.get("/weather", getWeather);
+
+app.post("/weather", postWeather);
 
 // Setup Server
-app.listen(PORT, () => {
-    console.log("Running Website...")
-});
+app.listen(PORT, () => {});
