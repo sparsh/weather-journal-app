@@ -1,11 +1,11 @@
 /* Global Variables */
 
 // Create a new date instance dynamically with JS
-const API_KEY = "c42b9f6e3be8fbe7746a5296640df4ec";
+const API_KEY = "c42b9f6e3be8fbe7746a5296640df4ec&units=imperial";
 const OPEN_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth()+1 + "." + d.getDate() + "." + d.getFullYear();
 
 /**
  * Get weather Data using open wether map api
@@ -16,9 +16,6 @@ const getWeatherData = async (zipCode) => {
   const url = `${OPEN_WEATHER_BASE_URL}?zip=${zipCode}&appid=${API_KEY}`;
   const response = await fetch(url, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
   return response.json();
 };
@@ -33,9 +30,6 @@ const postWeatherData = async (postData) => {
 
   const response = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(postData),
   });
   return response.json();

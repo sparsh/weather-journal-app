@@ -35,4 +35,6 @@ app.get("/weather", getWeather);
 app.post("/weather", postWeather);
 
 // Setup Server
-app.listen(PORT, () => {});
+app.listen(PORT, () => {
+  console.log("Successfully Listening to Port", PORT)
+});
