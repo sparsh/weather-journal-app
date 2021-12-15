@@ -17,7 +17,22 @@ app.use(bodyParser.json());
 
 // Initialize the main project folder
 app.use(express.static('website'));
+const getWeather = (request, response) => {
+    console.log("Sending project data", projectData);
+    response.send(projectData);
+}
 
+const postWeather = (request, response) => {
+    const requestBody = request.body;
+    projectData = {
+        ...requestBody
+    };
+    console.log("the project data is ", projectData)
+    response.send({status:'Success', message:'Data Added Sucessfully'});
+}
+app.get('/weather', getWeather);
+
+app.post('/weather', postWeather);
 
 // Setup Server
 app.listen(PORT, () => {
