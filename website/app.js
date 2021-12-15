@@ -54,7 +54,7 @@ const updateUI = (weatherData) => {
 const generateWeatherReport = () => {
   try {
     const zipCode = document.getElementById("zip").value;
-    const userInput = document.getElementById("feelings").innerText;
+    const userInput = document.getElementById("feelings").value;
 
     if (zipCode) {
       getWeatherData(zipCode).then((weatherData) => {
