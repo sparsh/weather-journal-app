@@ -27,8 +27,8 @@ const postWeather = (request, response) => {
   projectData = {
     ...requestBody,
   };
-
   response.send({ status: "Success", message: "Data Added Sucessfully" });
+  console.log("Post API Success...");
 };
 app.get("/weather", getWeather);
 
